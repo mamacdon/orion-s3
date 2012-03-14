@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script
+		data-dojo-config="
+			async: true,
+			baseUrl: location.pathname.replace(/\/[^\/]+$/, ''),
+			packages: [
+				{	name: 's3',
+					location: './../lib/s3'
+				},
+				{	name: 'orion',
+					location: './../lib/orion'
+				},
+				{	name: 's3test',
+					location: '.'
+				}
+			]"
+		src="//ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script>
+	<script>
+	/*global require*/
+	require(["orion/test", "s3test/testcase", "orion/plugin", "dojo/domReady!"], function(test, testcase) {
+		test.run(testcase);
+	});
+	</script>
+</head>
+<body>
+</body>
+</html>

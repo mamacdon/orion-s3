@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script
+		data-dojo-config="
+			async: true,
+			baseUrl: location.pathname.replace(/\/[^\/]+$/, ''),
+			packages: [
+				{	name: 's3',
+					location: './lib/s3',
+				},
+				{	name: 'orion',
+					location: './lib/orion'
+				}
+			]"
+		src="//ajax.googleapis.com/ajax/libs/dojo/1.7.2/dojo/dojo.js"></script>
+	<script>
+		/*global console eclipse require*/
+		require(['s3/s3Impl', 'orion/plugin', 'dojo/domReady!'], function(S3Impl, plugin) {
+			// URI of the target bucket to use for file storage, in AWS "path-style" format. It can NOT be the same bucket this plugin is hosted from,
+			// because a bucket configured to host static web content cannot serve AWS REST requests.
+			var targetBucket = 'http://s3.amazonaws.com/mamacdon';
+
+			var service = new S3Impl.S3FileServiceImpl(targetBucket);
+			var provider = new eclipse.PluginProvider();
+			var bucketName = targetBucket.split(/\//).pop();
+			provider.registerServiceProvider('orion.core.file', service, {Name:'Amazon S3 ' + bucketName, top:targetBucket, pattern:targetBucket});
+			service.dispatchEvent = provider.dispatchEvent;
+			provider.connect(
+				function() {
+					console.log('S3 plugin connected. Target bucket is ' + targetBucket);
+					var bucketElement = document.getElementById('bucket');
+					bucketElement.innerHTML = 'Target bucket is: ' + targetBucket;
+				},
+				function(e) {
+					console.log("S3 plugin error: " + e);
+				}
+			);
+		});
+	</script>
+	<title>S3 File Plugin</title>
+</head>
+<body>
+<p>Amazon S3 File Plugin</p>
+<div id="bucket"></div>
+</body>
+</html>
