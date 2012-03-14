@@ -27,12 +27,14 @@ Installation
        'http://s3.amazonaws.com/myorionfiles'
 3. Upload the modified plugin source code to a second S3 bucket that you control. The bucket must be configured to serve static web content.
    For configuration help, see [Hosting Websites on Amazon S3](http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html?r=499).
+   Ensure all the plugin files are publicly readable, or you'll get 403 errors later.
 4. Load the plugin's URL to verify that it works.
    For example, if your website bucket is "mywebsite", the URL should look something like this:
        http://s3.amazonaws.com/mywebsite/s3FilePlugin.html
 5. Log in to Orion and install the plugin using its URL.
 6. The target bucket should appear as an additional filesystem in the Orion navigator. 
-   Browse into it to view and edit files.
+   Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your keys.
+   The keys will be cached in memory until you close your browser.
 
 Note that both ```targetBucket``` and the plugin URL use **s3.amazonaws.com** as the hostname. These hostnames must match exactly, so that
 the plugin can make AWS API calls using XMLHttpRequest without violating the [same origin policy](https://developer.mozilla.org/En/Same_origin_policy_for_JavaScript).
