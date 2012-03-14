@@ -3,19 +3,18 @@ to an Amazon S3 bucket as a filesystem.
 
 Details
 -------
-The plugin is hosted from an S3 bucket that is configured as a website. It makes REST requests 
-(to read and write files) against a second bucket. You must have the appropriate permissions 
-to both buckets.
+The plugin should be hosted from an S3 bucket that is configured as a website. The plugin makes REST requests 
+(to read and write files) against a second bucket. You must have the appropriate credentials to access both buckets.
 
 Security
 --------
-The plugin prompts for your AWS **Access Key Id** and **Secret Access Key**. These are used to sign
-AWS requests. The Secret Access Key is not transmitted over the wire, but is stored in your browser's 
-```sessionStorage``` for the duration of the session.
+The plugin prompts for your AWS **Access Key** and **Secret Access Key**. These are used to sign requests
+to the AWS API. The Secret Access Key is *not* transmitted over the wire, but it is stored in your browser's 
+[sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage) for the duration of your browsing session.
 
-**Basic security best practices dictate that secret keys never be typed or pasted into any web page.**
-Please consider the security implications of using this plugin, and audit the source code to your 
-satisfaction before using.
+Please consider the security implications of using this plugin, and examine its source code to your satisfaction
+before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
+from an untrusted source.
 
 Installation
 ------------
@@ -28,7 +27,7 @@ Installation
 3. Upload the modified plugin source code to a second S3 bucket that you control. The bucket must be configured to serve static web content.
    For configuration help, see [Hosting Websites on Amazon S3](http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html?r=499).
    Ensure all the plugin files are publicly readable, or you'll get 403 errors later.
-4. Load the plugin's URL to verify that it works.
+4. Load the plugin's URL to verify that can be accessed.
    For example, if your website bucket is "mywebsite", the URL should look something like this:
        http://s3.amazonaws.com/mywebsite/s3FilePlugin.html
 5. Log in to Orion and install the plugin using its URL.
@@ -41,7 +40,7 @@ the plugin can make AWS API calls using XMLHttpRequest without violating the [sa
 
 Requirements
 ------------
-* Orion 0.4
+* [Orion 0.4](http://download.eclipse.org/orion/)+
 
 License
 -------
