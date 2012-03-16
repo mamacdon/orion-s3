@@ -33,7 +33,7 @@ Installation
 5. Log in to Orion and install the plugin using its URL.
 6. The target bucket should appear as an additional filesystem in the Orion navigator. 
    Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your keys.
-   The keys will be persisted in your browser's localStorage.
+   The keys will be persisted in your browser's localStorage, which can usually be cleared using the browser's "Clear Private Data" feature.
 
 Note that both ```targetBucket``` and the plugin URL use **s3.amazonaws.com** as the hostname. These hostnames must match exactly, so that
 the plugin can make AWS API calls using XMLHttpRequest without violating the [same origin policy](https://developer.mozilla.org/En/Same_origin_policy_for_JavaScript).
