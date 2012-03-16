@@ -10,7 +10,7 @@ Security
 --------
 The plugin prompts for your AWS **Access Key** and **Secret Access Key**. These are used to sign requests
 to the AWS API. The Secret Access Key is *not* transmitted over the wire, but it is stored in your browser's 
-[sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage) for the duration of your browsing session.
+[localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage).
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
@@ -33,7 +33,7 @@ Installation
 5. Log in to Orion and install the plugin using its URL.
 6. The target bucket should appear as an additional filesystem in the Orion navigator. 
    Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your keys.
-   The keys will be cached in memory until you close your browser.
+   The keys will be persisted in your browser's localStorage.
 
 Note that both ```targetBucket``` and the plugin URL use **s3.amazonaws.com** as the hostname. These hostnames must match exactly, so that
 the plugin can make AWS API calls using XMLHttpRequest without violating the [same origin policy](https://developer.mozilla.org/En/Same_origin_policy_for_JavaScript).
