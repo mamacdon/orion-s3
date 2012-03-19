@@ -22,12 +22,11 @@ Installation
 2. Edit the source code of ```s3FilePlugin.html```. Set ```targetBucket``` to the URL of the bucket that will hold your Orion files.
    The URL must be given using the AWS [path-style syntax](http://docs.amazonwebservices.com/AmazonS3/latest/dev/VirtualHosting.html#d0e4464),
    so the host is **s3.amazonaws.com** and the bucket name is the path component of the URL.
-   For example:
-       'http://s3.amazonaws.com/myorionfiles'
+   For example: http://s3.amazonaws.com/myorionfiles
 3. Upload the modified plugin source code to a second S3 bucket that you control. The bucket must be configured to serve static web content.
    For configuration help, see [Hosting Websites on Amazon S3](http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteHosting.html?r=499).
    Ensure all the plugin files are publicly readable, or you'll get 403 errors later.
-4. Load the plugin's URL to verify that can be accessed.
+4. Load the plugin's URL to verify that it can be accessed.
    For example, if your website bucket is "mywebsite", the URL should look something like this:
        http://s3.amazonaws.com/mywebsite/s3FilePlugin.html
 5. Log in to Orion and install the plugin using its URL.
