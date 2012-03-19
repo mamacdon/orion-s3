@@ -24,7 +24,10 @@
 			var service = new S3Impl.S3FileServiceImpl(targetBucket);
 			var provider = new eclipse.PluginProvider();
 			var bucketName = targetBucket.split(/\//).pop();
-			provider.registerServiceProvider('orion.core.file', service, {Name:'Amazon S3 ' + bucketName, top:targetBucket, pattern:targetBucket});
+			provider.registerServiceProvider('orion.core.file', service,
+				{	Name: 'Amazon S3 ' + bucketName,
+					top: targetBucket,
+					pattern: targetBucket });
 			service.dispatchEvent = provider.dispatchEvent;
 			provider.connect(
 				function() {
