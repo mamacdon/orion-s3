@@ -9,16 +9,16 @@ The plugin should be hosted from an S3 bucket that is configured as a website. T
 Security
 --------
 The first time you use the plugin, it prompts for 3 pieces of information:
-* A passphrase.
-* Your AWS **Access Key**.
-* Your AWS **Secret Access Key**.
+
+ * A passphrase.
+ * Your AWS **Access Key**.
+ * Your AWS **Secret Access Key**.
 
 The AWS keys are used to sign requests to the S3 REST API. Your Secret Access Key is *never* transmitted over the wire. However,
 both keys are encrypted and kept in your browser's [localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for 
-the **s3.amazonaws.com** domain. This saves you from having to type in your keys every time the plugin loads.
-
-The passphrase is kept in temporary [sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have
-to re-enter it when opening a new window or after closing the browser.
+the **s3.amazonaws.com** domain. This saves you from having to type in your keys every time the plugin loads. The passphrase is kept 
+in temporary [sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have to re-enter it when 
+opening a new window or after closing the browser.
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
