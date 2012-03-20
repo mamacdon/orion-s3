@@ -8,10 +8,17 @@ The plugin should be hosted from an S3 bucket that is configured as a website. T
 
 Security
 --------
-The plugin prompts for your AWS **Access Key** and **Secret Access Key**. These are used to sign requests
-to the AWS API. The Secret Access Key is *not* transmitted over the wire. However, it is stored in your browser's 
-[localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for the **s3.amazonaws.com** domain,
-which is an obvious security risk.
+The first time you use the plugin, it prompts for 3 pieces of information:
+* A passphrase.
+* Your AWS **Access Key**.
+* Your AWS **Secret Access Key**.
+
+The AWS keys are used to sign requests to the S3 REST API. Your Secret Access Key is *never* transmitted over the wire. However,
+both keys are encrypted and kept in your browser's [localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for 
+the **s3.amazonaws.com** domain. This saves you from having to type in your keys every time the plugin loads.
+
+The passphrase is kept in temporary [sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have
+to re-enter it when opening a new window or after closing the browser.
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
@@ -32,8 +39,8 @@ Installation
        http://s3.amazonaws.com/mywebsite/s3FilePlugin.html
 5. Log in to Orion and install the plugin using its URL.
 6. The target bucket should appear as an additional filesystem in the Orion navigator. 
-   Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your keys.
-   The keys will be persisted in your browser's localStorage, which can usually be cleared using the browser's "Clear Private Data" feature.
+   Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your passphrase and keys.
+   (See **Security**, above.)
 
 Note that both ```targetBucket``` and the plugin URL use **s3.amazonaws.com** as the hostname. These hostnames must match exactly, so that
 the plugin can make AWS API calls using XMLHttpRequest without violating the [same origin policy](https://developer.mozilla.org/En/Same_origin_policy_for_JavaScript).
