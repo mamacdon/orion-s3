@@ -9,8 +9,9 @@ The plugin should be hosted from an S3 bucket that is configured as a website. T
 Security
 --------
 The plugin prompts for your AWS **Access Key** and **Secret Access Key**. These are used to sign requests
-to the AWS API. The Secret Access Key is *not* transmitted over the wire, but it is stored in your browser's 
-[localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage).
+to the AWS API. The Secret Access Key is *not* transmitted over the wire. However, it is stored in your browser's 
+[localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for the **s3.amazonaws.com** domain,
+which is an obvious security risk.
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
