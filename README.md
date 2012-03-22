@@ -3,22 +3,23 @@ to an Amazon S3 bucket as a filesystem.
 
 Details
 -------
-The plugin should be hosted from an S3 bucket that is configured as a website. The plugin makes REST requests 
+The plugin is hosted from an S3 bucket that is configured as a website. The plugin makes REST requests 
 (to read and write files) against a second bucket. You must have the appropriate credentials to access both buckets.
 
 Security
 --------
 The first time you use the plugin, it prompts for 3 pieces of information:
 
- * A passphrase.
- * Your AWS **Access Key**.
- * Your AWS **Secret Access Key**.
+ * A **passphrase**: used to encrypt your AWS keys before persisting them.
+ * Your AWS **Access Key**: used to sign S3 requests.
+ * Your AWS **Secret Access Key**: used to sign S3 requests.
 
-The AWS keys are used to sign requests to the S3 REST API. Your Secret Access Key is *never* transmitted over the wire. However,
-both keys are encrypted and kept in your browser's [localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for 
-the **s3.amazonaws.com** domain. This saves you from having to type in your keys every time the plugin loads. The passphrase is kept 
-in temporary [sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have to re-enter it when 
-opening a new window or after closing the browser.
+Your Secret Access Key is not transmitted over the wire. However, both AWS keys are encrypted and persisted in your browser's 
+[localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for the s3.amazonaws.com domain. This saves you 
+from having to type in your keys every time the plugin loads. The passphrase is kept in temporary 
+[sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have to re-enter it when opening a 
+new window or after closing the browser. Do not reveal the passphrase to anyone, because with it a malicious page on the 
+s3.amazonaws.com domain could potentially retrieve and decrypt your encryped keys from localStorage.
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
@@ -37,13 +38,28 @@ Installation
 4. Load the plugin's URL to verify that it can be accessed.
    For example, if your website bucket is "mywebsite", the URL should look something like this:
        http://s3.amazonaws.com/mywebsite/s3FilePlugin.html
-5. Log in to Orion and install the plugin using its URL.
-6. The target bucket should appear as an additional filesystem in the Orion navigator. 
+5. Log in to Orion. Install the plugin using the URL from the previous step.
+6. Your target bucket should appear as an additional filesystem in the Orion navigator. 
    Browse into it to view and edit files. The first time you try to access the bucket, you'll be prompted for your passphrase and keys.
    (See **Security**, above.)
 
 Note that both ```targetBucket``` and the plugin URL use **s3.amazonaws.com** as the hostname. These hostnames must match exactly, so that
 the plugin can make AWS API calls using XMLHttpRequest without violating the [same origin policy](https://developer.mozilla.org/En/Same_origin_policy_for_JavaScript).
+
+Features
+--------
+* Create file/folder
+* Delete file/folder
+* Read and write files
+
+Known Issues
+------------
+The following features are not implemented:
+
+* Binary data support
+* Copy a file/folder
+* Rename/move a file/folder
+* Remote import/export
 
 Requirements
 ------------
