@@ -16,10 +16,9 @@ The first time you use the plugin, it prompts for 3 pieces of information:
 
 Your Secret Access Key is not transmitted over the wire. However, both AWS keys are encrypted and persisted in your browser's 
 [localStorage](https://developer.mozilla.org/en/DOM/Storage#localStorage) for the s3.amazonaws.com domain. This saves you 
-from having to type in your keys every time the plugin loads. The passphrase is kept in temporary 
-[sessionStorage](https://developer.mozilla.org/en/DOM/Storage#sessionStorage), so you'll have to re-enter it when opening a 
-new window or after closing the browser. Do not reveal the passphrase to anyone, because with it a malicious page on the 
-s3.amazonaws.com domain could potentially retrieve and decrypt your encryped keys from localStorage.
+from having to type in your keys every time the plugin loads. The passphrase is kept only in memory, so you'll have to re-enter
+it whenever the plugin loads (eg. when opening a new window or after closing the browser). Do not reveal the passphrase to anyone,
+because with it a malicious page on the s3.amazonaws.com domain could potentially retrieve and decrypt your encrypted keys from localStorage.
 
 Please consider the security implications of using this plugin, and examine its source code to your satisfaction
 before using. Never type or paste your secret key into a web page that you do not control. Never install a plugin
